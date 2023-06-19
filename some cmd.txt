@@ -4,3 +4,9 @@
 ./build/main ./build/player_random ./build/player_test
 /mnt/c/Users/User/Desktop/coding/project3
 ./build/main ./build/player_random /baselines/baseline1
+./build/main ./build/player_random ./build/player_minimax
+./build/main ./build/player_minimax ./build/player_random
+./build/main ./build/player_minimax /baselines/baseline1
+./build/main ./build/player_minimax /baselines/baseline2
+./build/main /baselines/baseline1 ./build/player_minimax
+./build/main /baselines/baseline2 ./build/player_minimax
