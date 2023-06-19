@@ -11,9 +11,70 @@
  * 
  * @return int 
  */
+std::vector<Point> get_ctrl_blocks(std::vector<Move> moves){
+    std::vector<Point> blocks;
+    for(auto it : moves)    blocks.push_back(it.second);
+    return blocks;
+}
+
+int State::evaluate2(){
+    // [TODO] design your own evaluation function
+    auto self_board = this->board.board[this->player];
+    auto oppn_board = this->board.board[1 - this->player];
+    std::vector<Move> self_moves = this->legal_actions;
+    std::vector<Point> self_ctrl_block = get_ctrl_blocks(self_moves);
+    
+    State oppn_state(this->board, 1-this->player);
+    oppn_state.get_legal_actions();
+    std::vector<Move> oppn_moves = oppn_state.legal_actions;
+    std::vector<Point> oppn_ctrl_block = get_ctrl_blocks(oppn_moves);
+
+    int self_val = 0, oppn_val = 0;
+    for(auto it : self_ctrl_block){
+        int i = it.first, j = it.second;
+        int type = oppn_board[i][j];
+        if(type == 0)   self_val += 1;
+        else if(type == 1)  self_val += 2;
+        else if(type == 2 || type == 4)  self_val += BOARD_H+BOARD_W-2;
+        else if(type == 3)  self_val += 8;
+        else if(type == 5)  self_val += 2*(BOARD_H+BOARD_W);
+        else if(type == 6)  self_val = 100000;
+    }
+    for(auto it : oppn_ctrl_block){
+        int i = it.first, j = it.second;
+        int type = self_board[i][j];
+        if(type == 0)   oppn_val += 1;
+        else if(type == 1)  oppn_val += 2;
+        else if(type == 2 || type == 4)  oppn_val += BOARD_H+BOARD_W-2;
+        else if(type == 3)  oppn_val += 8;
+        else if(type == 5)  oppn_val += 2*(BOARD_H+BOARD_W);
+        else if(type == 6)  oppn_val = 100000;
+    }
+  return self_val - oppn_val;
+}
+
 int State::evaluate(){
-  // [TODO] design your own evaluation function
-  return 0;
+    auto self_board = this->board.board[this->player];
+    auto oppn_board = this->board.board[1-this->player];
+
+    int self_val;
+    int oppn_val;
+    self_val = oppn_val = 0;
+    for(int i=0; i<BOARD_H; i++){
+        for(int j=0; j<BOARD_W; j++){
+            if(self_board[i][j] == 1)   self_val += 2;
+            if(self_board[i][j] == 2 || self_board[i][j] == 4)   self_val += 8;
+            if(self_board[i][j] == 3)   self_val += 6;
+            if(self_board[i][j] == 5)   self_val += 20;
+            if(self_board[i][j] == 6)   self_val += 100000;
+            if(oppn_board[i][j] == 1) oppn_val += 2;
+            if(oppn_board[i][j] == 2 || oppn_board[i][j] == 4) oppn_val +=8;
+            if(oppn_board[i][j] == 3) oppn_val += 6;
+            if(oppn_board[i][j] == 5) oppn_val += 20;
+            if(oppn_board[i][j] == 6) oppn_val += 100000;
+        }
+    }
+    return self_val - oppn_val;
 }
 
 
