@@ -31,7 +31,7 @@ int minimax::minimax_val(State* state, int depth, int player){
     state->get_legal_actions();
     if(state->game_state == WIN && state->player == player)    return 1000000;
     else if(state->game_state == WIN && state->player != player)    return -1000000;
-    if(depth == 1) return  state->evaluate();
+    if(depth == 1) return  state->evaluate2();
     
     if(state->player == player){
         int val = -900000;
