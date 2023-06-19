@@ -29,8 +29,8 @@ Move minimax::get_move(State *state, int depth){
 int minimax::minimax_val(State* state, int depth, int player){
     if(!state->legal_actions.size())
     state->get_legal_actions();
-    if(state->game_state == WIN && state->player == player)    return 1000000;
-    else if(state->game_state == WIN && state->player != player)    return -1000000;
+    if(state->game_state == WIN && state->player == player)    return -1000000;
+    else if(state->game_state == WIN && state->player != player)    return 1000000;
     if(depth == 1) return  state->evaluate();
     
     if(state->player == player){
