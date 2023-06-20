@@ -81,7 +81,7 @@ int State::evaluate(int player){
             if(oppn_board[i][j] == 5)   oppn_val += 20*(abs(i-2)+abs(j-2));
             if(oppn_board[i][j] == 6)   oppn_val += 100*(abs(i-2)+abs(j-2));
             
-            
+            /*
             if(self.game_state  == WIN) {
                 self_val += 100;
                 continue;
@@ -91,6 +91,8 @@ int State::evaluate(int player){
                 oppn_val += 10000;
                 continue;
             }
+            */
+            
             std::vector<Point> ctrl_blocks = get_ctrl_blocks(self.legal_actions);
             for(auto it : ctrl_blocks){
                 int ci = it.first, cj = it.second;
