@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./alphabeta.hpp"
+#include "./submission.hpp"
 
 
 /**
@@ -11,7 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move alphabeta::get_move(State *state, int depth){
+Move submission::get_move(State *state, int depth){
     if(!state->legal_actions.size())
         state->get_legal_actions();
     if(state->game_state == WIN)    return state->legal_actions.back();
@@ -20,7 +20,7 @@ Move alphabeta::get_move(State *state, int depth){
     bool existed_bestmove = false;
     for(auto it : state->legal_actions){
         
-        int nxt_val = alphabeta::pruning(state->next_state(it), depth, state->player, -1000000, 1000000);
+        int nxt_val = submission::pruning(state->next_state(it), depth, state->player, -1000000, 1000000);
         if(nxt_val>val) {
             val = nxt_val;
             BestMove = it;
@@ -30,7 +30,7 @@ Move alphabeta::get_move(State *state, int depth){
     if(existed_bestmove)    return BestMove;
     else return state->legal_actions[(rand()+depth)%state->legal_actions.size()];
 }
-int alphabeta::pruning(State* state, int depth, int player, int alpha, int beta){
+int submission::pruning(State* state, int depth, int player, int alpha, int beta){
     //alpha is the biggest child val of the state, 
     //since we choose the mini in oppn round, when alpha>beta, 
     //then there is no child val of the state can smaller than its sibling
