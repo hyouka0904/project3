@@ -38,7 +38,11 @@ int alphabeta::pruning(State* state, int depth, int player, int alpha, int beta)
     //beta is the smallest sibling val of the state, 
     //since we choose the max in self round , when beta>alpha,
     //then there is no child val of the state can bigger than its sibling
-    
+
+    if(state->game_state == WIN){
+        if(state->player == player) return 1000000;
+        else return -1000000;
+    }
     if(depth == 1) return  state->evaluate(player);
     
     if(1-state->player == player){

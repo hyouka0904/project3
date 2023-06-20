@@ -11,7 +11,6 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-std::vector<std::pair<State*, Move>> leaf_state;
 Move minimax::get_move(State *state, int depth){
     if(!state->legal_actions.size())
         state->get_legal_actions();
@@ -33,6 +32,10 @@ Move minimax::get_move(State *state, int depth){
 }
 int minimax::minimax_val(State* state, int depth, int player){
     
+    if(state->game_state == WIN){
+        if(state->player == player) return 1000000;
+        else return -1000000;
+    }
     if(depth == 1) return  state->evaluate(player);
     
     if(1-state->player == player){//judge the one just moved the chess
