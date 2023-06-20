@@ -9,4 +9,5 @@
 class Test{
 public:
   static Move get_move(State *state, int depth);
+  static int minimax_val(State* state, int depth, int player);
 };

@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./minimax.hpp"
+#include "./test.hpp"
 
 
 /**
@@ -11,8 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-std::vector<std::pair<State*, Move>> leaf_state;
-Move minimax::get_move(State *state, int depth){
+Move Test::get_move(State *state, int depth){
     if(!state->legal_actions.size())
         state->get_legal_actions();
     if(state->game_state == WIN)    return state->legal_actions.back();
@@ -21,7 +20,7 @@ Move minimax::get_move(State *state, int depth){
     bool existed_bestmove = false;
     for(auto it : state->legal_actions){
         
-        int nxt_val = minimax::minimax_val(state->next_state(it), depth, state->player);
+        int nxt_val = Test::minimax_val(state->next_state(it), depth, state->player);
         if(nxt_val>val) {
             val = nxt_val;
             BestMove = it;
@@ -31,14 +30,14 @@ Move minimax::get_move(State *state, int depth){
     if(existed_bestmove)    return BestMove;
     else return state->legal_actions[(rand()+depth)%state->legal_actions.size()];
 }
-int minimax::minimax_val(State* state, int depth, int player){
+int Test::minimax_val(State* state, int depth, int player){
     
     if(depth == 1) return  state->evaluate2(player);
     
     if(1-state->player == player){//judge the one just moved the chess
         int val = -900000;
         for(auto it : state->legal_actions){
-            int nxt_val = minimax::minimax_val(state->next_state(it),  depth-1, player);
+            int nxt_val = Test::minimax_val(state->next_state(it),  depth-1, player);
             if(nxt_val>val) val = nxt_val;
         }
         return val;
@@ -46,7 +45,7 @@ int minimax::minimax_val(State* state, int depth, int player){
     else {
         int val = 900000;
         for(auto it : state->legal_actions){
-            int nxt_val = minimax::minimax_val(state->next_state(it), depth-1, player);
+            int nxt_val = Test::minimax_val(state->next_state(it), depth-1, player);
             if(nxt_val<val) val = nxt_val;
         }
         return val;
