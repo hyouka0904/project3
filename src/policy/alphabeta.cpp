@@ -40,7 +40,7 @@ int alphabeta::pruning(State* state, int depth, int player, int alpha, int beta)
     //then there is no child val of the state can bigger than its sibling
 
     if(state->game_state == WIN){
-        if(state->player == player) return 1000000;
+        if(state->player == player) return 100;
         else return -1000000;
     }
     if(depth == 1) return  state->evaluate(player);
