@@ -2,15 +2,23 @@
 ./build/main ./build/player_minimax ./build/player_random
 ./build/main ./build/player_random ./build/player_random
 ./build/main ./build/player_random ./build/player_test
+./build/main ./build/player_test ./build/player_random
 /mnt/c/Users/User/Desktop/coding/project3
 ./build/main ./build/player_random /baselines/baseline1
+
 ./build/main ./build/player_random ./build/player_minimax
 ./build/main ./build/player_minimax ./build/player_random
+
 ./build/main ./build/player_minimax /baselines/baseline1
 ./build/main ./build/player_minimax /baselines/baseline2
 ./build/main /baselines/baseline1 ./build/player_minimax
 ./build/main /baselines/baseline2 ./build/player_minimax
+
 ./build/main ./build/player_IDDFS /baselines/baseline1
 ./build/main ./build/player_IDDFS /baselines/baseline2
 ./build/main ./build/player_alpha-beta-pruning /baselines/baseline1
+./build/main ./build/player_alpha-beta-pruning /baselines/baseline2
+
+./build/main ./build/player_random ./build/player_alphabeta
+./build/main ./build/player_alphabeta ./build/player_random
 
