@@ -82,11 +82,11 @@ int State::evaluate(int player){
                 int ci = it.first, cj = it.second;
                 oppn_val += piece_val_table[(int)self_board[ci][cj]];
             }
-            /*
+            
             for(auto scb : self_ctrl_blocks)
                 for(auto ocb : oppn_ctrl_blocks)
                     if(scb == ocb)  oppn_val += 4;
-            */
+            
         }
     }
     return self_val - oppn_val;
