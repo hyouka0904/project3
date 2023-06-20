@@ -65,7 +65,7 @@ int State::evaluate(int player){
     int self_val;
     int oppn_val;
     self_val = oppn_val = 0;
-    int piece_val_table[7] = {0, 2, 6, 8, 10, 20, 1000};//block, pawn, rook, horse, bishop, queen, king
+    int piece_val_table[7] = {0, 2, 6, 8, 10, 20, 6};//block, pawn, rook, horse, bishop, queen, king
     for(int i=0; i<BOARD_H; i++){
         for(int j=0; j<BOARD_W; j++){
             self_val += piece_val_table[(int)self_board[i][j]]*10;
@@ -81,6 +81,7 @@ int State::evaluate(int player){
             for(auto it : oppn_ctrl_blocks){
                 int ci = it.first, cj = it.second;
                 oppn_val += piece_val_table[(int)self_board[ci][cj]]+10;
+                if(self_board[ci][cj] == 6) oppn_val += 100;
             }
             
             //for(auto scb : self_ctrl_blocks)
