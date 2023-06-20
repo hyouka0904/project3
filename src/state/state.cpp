@@ -75,12 +75,12 @@ int State::evaluate(int player){
             std::vector<Point> self_ctrl_blocks = get_ctrl_blocks(self.legal_actions);
             for(auto it : self_ctrl_blocks){
                 int ci = it.first, cj = it.second;
-                self_val += piece_val_table[(int)oppn_board[ci][cj]];
+                self_val += piece_val_table[(int)oppn_board[ci][cj]]+1;
             }
             std::vector<Point> oppn_ctrl_blocks = get_ctrl_blocks(oppn.legal_actions);
             for(auto it : oppn_ctrl_blocks){
                 int ci = it.first, cj = it.second;
-                oppn_val += piece_val_table[(int)self_board[ci][cj]];
+                oppn_val += piece_val_table[(int)self_board[ci][cj]]+1;
             }
             
             for(auto scb : self_ctrl_blocks)
