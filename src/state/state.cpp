@@ -68,34 +68,26 @@ int State::evaluate(int player){
     int piece_val_table[7] = {0, 2, 6, 8, 10, 20, 100};//block, pawn, rook, horse, bishop, queen, king
     for(int i=0; i<BOARD_H; i++){
         for(int j=0; j<BOARD_W; j++){
-            if(self_board[i][j] == 1)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(self_board[i][j] == 2)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(self_board[i][j] == 3)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(self_board[i][j] == 4)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(self_board[i][j] == 5)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(self_board[i][j] == 6)   self_val += piece_val_table[(int)self_board[i][j]]*(abs(i-2)+abs(j-2));
-
-            if(oppn_board[i][j] == 1)   oppn_val += piece_val_table[(int)oppn_board[i][j]]*(abs(i-2)+abs(j-2));
-            if(oppn_board[i][j] == 2)   oppn_val += 6*(abs(i-2)+abs(j-2));
-            if(oppn_board[i][j] == 3)   oppn_val += 8*(abs(i-2)+abs(j-2));
-            if(oppn_board[i][j] == 4)   oppn_val += 10*(abs(i-2)+abs(j-2));
-            if(oppn_board[i][j] == 5)   oppn_val += 20*(abs(i-2)+abs(j-2));
-            if(oppn_board[i][j] == 6)   oppn_val += 100*(abs(i-2)+abs(j-2));
+            self_val += piece_val_table[(int)self_board[i][j]];
+            oppn_val += piece_val_table[(int)oppn_board[i][j]];
             
+            /*
             std::vector<Point> self_ctrl_blocks = get_ctrl_blocks(self.legal_actions);
             for(auto it : self_ctrl_blocks){
                 int ci = it.first, cj = it.second;
-                self_val += piece_val_table[(int)oppn_board[ci][cj]]*(abs(ci-2)+abs(cj-2));
+                self_val += piece_val_table[(int)oppn_board[ci][cj]];
             }
             std::vector<Point> oppn_ctrl_blocks = get_ctrl_blocks(oppn.legal_actions);
             for(auto it : oppn_ctrl_blocks){
                 int ci = it.first, cj = it.second;
-                oppn_val += piece_val_table[(int)self_board[ci][cj]]*(abs(ci-2)+abs(cj-2));
+                oppn_val += piece_val_table[(int)self_board[ci][cj]];
             }
             
             for(auto scb : self_ctrl_blocks)
                 for(auto ocb : oppn_ctrl_blocks)
                     if(scb == ocb)  oppn_val += 4;
+            
+            */
             
         }
     }
