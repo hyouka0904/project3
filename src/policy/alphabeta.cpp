@@ -45,7 +45,7 @@ int alphabeta::pruning(State* state, int depth, int player, int alpha, int beta)
     }
     if(depth == 1) return  state->evaluate(player);
     
-    if(1-state->player == player){
+    if(state->player == player){
         int val = -1000000;
         for(auto it : state->legal_actions){
             int tmp = pruning(state->next_state(it), depth-1, player, alpha, beta);
