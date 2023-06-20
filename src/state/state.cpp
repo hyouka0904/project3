@@ -17,14 +17,14 @@ std::vector<Point> get_ctrl_blocks(std::vector<Move> moves){
     return blocks;
 }
 
-int State::evaluate2(){
+int State::evaluate2(int player){
     // [TODO] design your own evaluation function
-    auto self_board = this->board.board[this->player];
-    auto oppn_board = this->board.board[1 - this->player];
+    auto self_board = this->board.board[player];
+    auto oppn_board = this->board.board[1 - player];
     std::vector<Move> self_moves = this->legal_actions;
     std::vector<Point> self_ctrl_block = get_ctrl_blocks(self_moves);
     
-    State oppn_state(this->board, 1-this->player);
+    State oppn_state(this->board, 1-player);
     oppn_state.get_legal_actions();
     std::vector<Move> oppn_moves = oppn_state.legal_actions;
     std::vector<Point> oppn_ctrl_block = get_ctrl_blocks(oppn_moves);
