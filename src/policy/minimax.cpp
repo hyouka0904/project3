@@ -37,7 +37,7 @@ int minimax::minimax_val(State* state, int depth, int player){
         else return -1000000;
     }
     if(depth == 1) return  state->evaluate(player);
-    
+    if(!state->legal_actions.size())    state->get_legal_actions();
     if(1-state->player == player){//judge the one just moved the chess
         int val = -900000;
         for(auto it : state->legal_actions){
