@@ -63,15 +63,18 @@ int State::evaluate(int player){
     for(int i=0; i<BOARD_H; i++){
         for(int j=0; j<BOARD_W; j++){
             if(self_board[i][j] == 1)   self_val += 2;
-            if(self_board[i][j] == 2 || self_board[i][j] == 4)   self_val += 8;
-            if(self_board[i][j] == 3)   self_val += 6;
+            if(self_board[i][j] == 2)   self_val += 6;
+            if(self_board[i][j] == 3)   self_val += 8;
+            if(self_board[i][j] == 4)   self_val += 10;
             if(self_board[i][j] == 5)   self_val += 20;
-            if(self_board[i][j] == 6)   self_val += 100000;
-            if(oppn_board[i][j] == 1) oppn_val += 2;
-            if(oppn_board[i][j] == 2 || oppn_board[i][j] == 4) oppn_val +=8;
-            if(oppn_board[i][j] == 3) oppn_val += 6;
-            if(oppn_board[i][j] == 5) oppn_val += 20;
-            if(oppn_board[i][j] == 6) oppn_val += 100000;
+            if(self_board[i][j] == 6)   self_val += 100;
+
+            if(oppn_board[i][j] == 1)   oppn_val += 2;
+            if(oppn_board[i][j] == 2)   oppn_val += 6;
+            if(oppn_board[i][j] == 3)   oppn_val += 8;
+            if(oppn_board[i][j] == 4)   oppn_val += 10;
+            if(oppn_board[i][j] == 5)   oppn_val += 20;
+            if(oppn_board[i][j] == 6)   oppn_val += 100;
         }
     }
     return self_val - oppn_val;
