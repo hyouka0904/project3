@@ -55,7 +55,6 @@ int State::evaluate2(int player){
 }
 
 int State::evaluate(int player){
-    player = 1-player;
     auto self_board = this->board.board[player];
     auto oppn_board = this->board.board[1-player];
     State self(this->board, player);
