@@ -53,9 +53,9 @@ int State::evaluate2(){
   return self_val - oppn_val;
 }
 
-int State::evaluate(){
-    auto self_board = this->board.board[this->player];
-    auto oppn_board = this->board.board[1-this->player];
+int State::evaluate(int player){
+    auto self_board = this->board.board[player];
+    auto oppn_board = this->board.board[1-player];
 
     int self_val;
     int oppn_val;
