@@ -21,7 +21,7 @@ Move alphabeta::get_move(State *state, int depth){
     bool existed_bestmove = false;
     for(auto it : state->legal_actions){
         
-        int nxt_val = alphabeta::pruning(state->next_state(it), depth, 1-state->player, -1000000, 1000000);
+        int nxt_val = alphabeta::pruning(state->next_state(it), depth, state->player, -1000000, 1000000);
         if(nxt_val>val) {
             val = nxt_val;
             BestMove = it;
