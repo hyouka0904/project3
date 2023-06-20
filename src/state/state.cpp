@@ -71,7 +71,7 @@ int State::evaluate(int player){
             self_val += piece_val_table[(int)self_board[i][j]];
             oppn_val += piece_val_table[(int)oppn_board[i][j]];
             
-            
+            /*
             std::vector<Point> self_ctrl_blocks = get_ctrl_blocks(self.legal_actions);
             for(auto it : self_ctrl_blocks){
                 int ci = it.first, cj = it.second;
@@ -86,9 +86,7 @@ int State::evaluate(int player){
             for(auto scb : self_ctrl_blocks)
                 for(auto ocb : oppn_ctrl_blocks)
                     if(scb == ocb)  oppn_val += 4;
-            
-            
-            
+            */
         }
     }
     return self_val - oppn_val;
