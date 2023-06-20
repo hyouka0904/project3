@@ -24,6 +24,10 @@
 ./build/main ./build/player_random ./build/player_alphabeta
 ./build/main ./build/player_alphabeta ./build/player_random
 
+./build/main ./build/player_alphabeta ./build/player_minimax
+./build/main ./build/player_minimax ./build/player_alphabeta
+
+
 ./build/main ./build/player_alphabeta /baselines/baseline1
 ./build/main ./build/player_alphabeta /baselines/baseline2
 ./build/main /baselines/baseline1 ./build/player_alphabeta
